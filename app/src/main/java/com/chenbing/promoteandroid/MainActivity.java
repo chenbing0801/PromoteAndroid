@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+	// chenbing
         btnAdd= (Button) findViewById(R.id.btn_add);
         btnSub= (Button) findViewById(R.id.btn_subtract);
 
@@ -63,11 +63,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (v.getId()){
             case R.id.btn_add:
                 mDatas.add(2,"x");
-                adapter.notifyItemInserted(2);
+                mDatas.add(2,"y");
+                adapter.notifyDataSetChanged();
+//                adapter.notifyItemInserted(2);
                 break;
             case R.id.btn_subtract:
                 mDatas.remove(2);
-                adapter.notifyItemRemoved(2);
+                mDatas.remove(2);
+                adapter.notifyDataSetChanged();
+//                adapter.notifyItemRemoved(2);
                 break;
         }
     }
@@ -100,7 +104,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Log.i("onClick",""+getPosition());
+                        Log.i("onClick",""+getPosition()+"--"+mDatas.get(getPosition()));
                     }
                 });
             }
