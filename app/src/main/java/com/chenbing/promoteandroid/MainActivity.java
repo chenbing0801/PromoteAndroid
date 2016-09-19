@@ -2,9 +2,8 @@ package com.chenbing.promoteandroid;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.OrientationHelper;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,16 +31,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 //        LinearLayoutManager mLayoutManager=new LinearLayoutManager(this);
 
-//        GridLayoutManager mLayoutManager=new GridLayoutManager(this,3);
+        GridLayoutManager mLayoutManager=new GridLayoutManager(this,2);
 //        mLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
 
 //        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, OrientationHelper.VERTICAL));
+//        recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, OrientationHelper.VERTICAL));
 
         initData();
 
         adapter = new MyAdapter();
-
+        recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setAdapter(adapter);
 
         initListener();
@@ -62,16 +61,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.btn_add:
-                mDatas.add(2,"x");
-                mDatas.add(2,"y");
-                adapter.notifyDataSetChanged();
-//                adapter.notifyItemInserted(2);
+                mDatas.add(2, "x");
+//                adapter.notifyDataSetChanged();
+                adapter.notifyItemInserted(2);
                 break;
             case R.id.btn_subtract:
                 mDatas.remove(2);
-                mDatas.remove(2);
-                adapter.notifyDataSetChanged();
-//                adapter.notifyItemRemoved(2);
+//                adapter.notifyDataSetChanged();
+                adapter.notifyItemRemoved(2);
                 break;
         }
     }
